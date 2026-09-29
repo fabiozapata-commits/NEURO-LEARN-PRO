@@ -9,10 +9,21 @@ if(rec){rec.lang="es-PE";rec.onresult=e=>{$("task").value=e.results[0][0].transc
 $("listen").onclick=()=>rec&&rec.start();
 $("speakIntro").onclick=()=>speak("Hola. Soy Neuro Learn. Dime qué necesitas aprender.");
 
-async function api(path,body){
- const r=await fetch("https://salami-neurology-posture.ngrok-free.dev"+path,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});
- if(!r.ok){let x=await r.json().catch(()=>({}));throw new Error(x.error||"Error del servidor")}
- return r.json();
+ async function api(path, body) {
+  const r = await fetch(path, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(body)
+  });
+
+  if (!r.ok) {
+    const x = await r.json().catch(() => ({}));
+    throw new Error(x.error || "Error del servidor");
+  }
+
+  return r.json();
 }
 
 $("start").onclick=async()=>{
