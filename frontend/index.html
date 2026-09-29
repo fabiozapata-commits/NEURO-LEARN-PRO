@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>NEURO-LEARN</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app">
+<header>
+  <div>
+    <small>ADAPTIVE LEARNING ASSISTANT</small>
+    <h1>NEURO<span>-LEARN</span></h1>
+    <p>Comprender · Recordar · Organizar · Actuar · Revisar</p>
+  </div>
+  <button id="speakIntro">🎙</button>
+</header>
+
+<section class="hero card">
+  <h2>¿Qué necesitas aprender?</h2>
+  <p>Escribe una tarea o dicta lo que necesitas estudiar.</p>
+  <textarea id="task" placeholder="Ej.: Tengo que estudiar las causas de la Primera Guerra Mundial..."></textarea>
+  <div class="actions">
+    <button class="primary" id="start">Crear sesión</button>
+    <button id="listen">🎙 Hablar</button>
+  </div>
+  <div id="status"></div>
+</section>
+
+<section id="session" class="hidden">
+  <div class="grid">
+    <section class="card">
+      <small>PROGRESO</small>
+      <div id="percent" class="percent">0%</div>
+      <div class="bar"><div id="bar"></div></div>
+      <p id="progressLabel"></p>
+    </section>
+    <section class="card">
+      <small>CHECKLIST</small>
+      <div id="checklist"></div>
+    </section>
+  </div>
+
+  <section class="card tutor">
+    <div class="tutorTop">
+      <div>
+        <small id="stage">CHUNKING</small>
+        <h2 id="chunkTitle"></h2>
+      </div>
+      <button id="repeat">↻ Repetir</button>
+    </div>
+
+    <div id="message" class="message"></div>
+
+    <div id="recall" class="hidden recall">
+      <strong id="question"></strong>
+      <textarea id="answer" placeholder="Explícalo con tus propias palabras..."></textarea>
+      <div class="actions">
+        <button class="primary" id="check">Comprobar</button>
+        <button id="hint">Pista</button>
+      </div>
+      <div id="feedback"></div>
+    </div>
+
+    <div class="actions">
+      <button class="primary" id="next">Siguiente →</button>
+    </div>
+  </section>
+
+  <div class="grid">
+    <section class="card">
+      <small>CONCEPTOS</small>
+      <div id="concepts"></div>
+    </section>
+    <section class="card">
+      <small>ADAPTACIÓN</small>
+      <div id="adaptation"></div>
+    </section>
+  </div>
+</section>
+<footer>NEURO-LEARN · MVP IA</footer>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
