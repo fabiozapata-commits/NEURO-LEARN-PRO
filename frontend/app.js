@@ -448,3 +448,223 @@ function finish() {
   );
 }
 function esc(x){return String(x).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
+// ===============================
+// SISTEMA DE CUENTAS
+// ===============================
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const loginBtn = $("loginBtn");
+  const registerBtn = $("registerBtn");
+  const showRegister = $("showRegister");
+  const showLogin = $("showLogin");
+
+  if (!loginBtn || !registerBtn || !showRegister || !showLogin) {
+    console.error("NEURO-LEARN: elementos de cuenta no encontrados.");
+    return;
+  }
+
+  // Cambiar a registro
+  showRegister.onclick = () => {
+    $("loginBox").classList.add("hidden");
+    $("registerBox").classList.remove("hidden");
+  };
+
+  // Cambiar a login
+  showLogin.onclick = () => {
+    $("registerBox").classList.add("hidden");
+    $("loginBox").classList.remove("hidden");
+  };
+
+
+  // ===============================
+  // CREAR CUENTA
+  // ===============================
+
+  registerBtn.onclick = async () => {
+
+    const name = $("registerName").value.trim();
+    const username = $("registerUsername").value.trim();
+    const password = $("registerPassword").value;
+    const grade = $("registerGrade").value.trim();
+
+    if (!name || !username || !password) {
+      $("registerStatus").textContent =
+        "Completa nombre, usuario y contraseña.";
+      return;
+    }
+
+    $("registerStatus").textContent =
+      "Creando cuenta...";
+
+    try {
+
+      const result = await api("/api/register", {
+        name,
+        username,
+        password,
+        grade
+      });
+
+      $("registerStatus").textContent =
+        "✓ Cuenta creada correctamente.";
+
+      $("registerName").value = "";
+      $("registerUsername").value = "";
+      $("registerPassword").value = "";
+      $("registerGrade").value = "";
+
+      setTimeout(() => {
+
+        $("registerBox").classList.add("hidden");
+        $("loginBox").classList.remove("hidden");
+
+        $("loginUsername").value = username;
+
+      }, 1000);
+
+    } catch (e) {
+
+      $("registerStatus").textContent =
+        "No se pudo crear la cuenta: " + e.message;
+
+    }
+  };
+
+
+  // ===============================
+  // INICIAR SESIÓN
+  // ===============================
+
+  loginBtn.onclick = async () => {
+
+    const username =
+      $("loginUsername").value.trim();
+
+    const password =
+      $("loginPassword").value;
+
+    if (!username || !password) {
+
+      $("loginStatus").textContent =
+        "Introduce usuario y contraseña.";
+
+      return;
+    }
+
+    $("loginStatus").textContent =
+      "Iniciando sesión...";
+
+    try {
+
+      const result = await api("/api/login", {
+        username,
+        password
+      });
+
+      S.studentId = result.student.id;
+      S.studentName = result.student.name;
+
+      $("loginStatus").textContent =
+        `✓ Bienvenido, ${result.student.name}`;
+
+      $("auth").classList.add("hidden");
+
+      $("status").textContent =
+        `Sesión iniciada como ${result.student.name}`;
+
+    } catch (e) {
+
+      $("loginStatus").textContent =
+        "No se pudo iniciar sesión: " + e.message;
+
+    }
+
+  };
+
+});
+  const name = $("registerName").value.trim();
+  const username = $("registerUsername").value.trim();
+  const password = $("registerPassword").value;
+  const grade = $("registerGrade").value.trim();
+
+  if (!name || !username || !password) {
+    $("registerStatus").textContent =
+      "Completa nombre, usuario y contraseña.";
+    return;
+  }
+
+  $("registerStatus").textContent =
+    "Creando cuenta...";
+
+  try {
+
+    const result = await api("/api/register", {
+      name,
+      username,
+      password,
+      grade
+    });
+
+    $("registerStatus").textContent =
+      "✓ Cuenta creada. Ahora puedes iniciar sesión.";
+
+    $("registerName").value = "";
+    $("registerUsername").value = "";
+    $("registerPassword").value = "";
+    $("registerGrade").value = "";
+
+    setTimeout(() => {
+      $("registerBox").classList.add("hidden");
+      $("loginBox").classList.remove("hidden");
+    }, 1000);
+
+  } catch (e) {
+
+    $("registerStatus").textContent =
+      "No se pudo crear la cuenta: " + e.message;
+  }
+;
+
+
+$("loginBtn").onclick = async () => {
+
+  const username =
+    $("loginUsername").value.trim();
+
+  const password =
+    $("loginPassword").value;
+
+  if (!username || !password) {
+    $("loginStatus").textContent =
+      "Introduce usuario y contraseña.";
+    return;
+  }
+
+  $("loginStatus").textContent =
+    "Iniciando sesión...";
+
+  try {
+
+    const result = await api("/api/login", {
+      username,
+      password
+    });
+
+    S.studentId = result.student.id;
+    S.studentName = result.student.name;
+
+    $("loginStatus").textContent =
+      `✓ Bienvenido, ${result.student.name}`;
+
+    $("auth").classList.add("hidden");
+
+    $("status").textContent =
+      `Sesión iniciada como ${result.student.name}`;
+
+  } catch (e) {
+
+    $("loginStatus").textContent =
+      "No se pudo iniciar sesión: " + e.message;
+  }
+};
