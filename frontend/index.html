@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  
   <img src="https://losmejorescolegios.com/storage/pe/schools/545/logo-institucion-colegio-mixto-santa-teresita-santiago-de-surco.png" alt="Logo" style="display:block; margin:20px auto; width:150px; height:auto;">
   <div style="text-align:center; margin:10px auto 25px; font-size:14px; color:#666;">
   <div><strong>Creadores</strong></div>
@@ -23,6 +24,92 @@
     <p>Comprender · Recordar · Organizar · Actuar · Revisar</p>
   </div>
   <button id="speakIntro">🎙</button>
+  <div id="auth" style="max-width:500px;margin:30px auto;padding:25px;border-radius:16px;background:#fff;box-shadow:0 4px 20px rgba(0,0,0,.08);">
+
+  <h2 style="text-align:center;">Bienvenido a NEURO-LEARN</h2>
+
+  <div id="loginBox">
+
+    <h3>Iniciar sesión</h3>
+
+    <input
+      id="loginUsername"
+      type="text"
+      placeholder="Usuario"
+      style="width:100%;padding:12px;margin:6px 0;"
+    >
+
+    <input
+      id="loginPassword"
+      type="password"
+      placeholder="Contraseña"
+      style="width:100%;padding:12px;margin:6px 0;"
+    >
+
+    <button id="loginBtn">
+      Iniciar sesión
+    </button>
+
+    <p id="loginStatus"></p>
+
+    <p>
+      ¿No tienes cuenta?
+      <button id="showRegister">
+        Crear cuenta
+      </button>
+    </p>
+
+  </div>
+
+
+  <div id="registerBox" class="hidden">
+
+    <h3>Crear cuenta</h3>
+
+    <input
+      id="registerName"
+      type="text"
+      placeholder="Nombre completo"
+      style="width:100%;padding:12px;margin:6px 0;"
+    >
+
+    <input
+      id="registerUsername"
+      type="text"
+      placeholder="Crea un usuario"
+      style="width:100%;padding:12px;margin:6px 0;"
+    >
+
+    <input
+      id="registerPassword"
+      type="password"
+      placeholder="Crea una contraseña"
+      style="width:100%;padding:12px;margin:6px 0;"
+    >
+
+    <input
+      id="registerGrade"
+      type="text"
+      placeholder="Grado (ej. 4to de secundaria)"
+      style="width:100%;padding:12px;margin:6px 0;"
+    >
+
+    <button id="registerBtn">
+      Crear cuenta
+    </button>
+
+    <p id="registerStatus"></p>
+
+    <p>
+      ¿Ya tienes cuenta?
+      <button id="showLogin">
+        Iniciar sesión
+      </button>
+    </p>
+
+  </div>
+
+</div>
 </header>
 
 <section class="hero card">
